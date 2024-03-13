@@ -126,22 +126,22 @@ const pessoa3 = new Pessoa("Bianca", 18, "bianca@gmail.com");
 const pessoa4 = new Pessoa("Júlia", 13, "julia@gmail.com");
 const pessoa5 = new Pessoa("João", 35, "joao@gmail.com");
 
-// console.log(pessoa1.nome);
+  // console.log(pessoa1.nome);
 
-// Menu.adicionarMenu(pessoa1);
-// Menu.adicionarMenu(pessoa2);
-// Menu.adicionarMenu(pessoa3);
-// Menu.adicionarMenu(pessoa4);
-// Menu.adicionarMenu(pessoa5);
+  // Menu.adicionarMenu(pessoa1);
+  // Menu.adicionarMenu(pessoa2);
+  // Menu.adicionarMenu(pessoa3);
+  // Menu.adicionarMenu(pessoa4);
+  // Menu.adicionarMenu(pessoa5);
 
-// Menu.alterarNome(pessoa1, "Marcelo");
-// Menu.alterarIdade(pessoa2, 100);
-// Menu.alterarEmail(pessoa3, "email@alterado.com");
+  // Menu.alterarNome(pessoa1, "Marcelo");
+  // Menu.alterarIdade(pessoa2, 100);
+  // Menu.alterarEmail(pessoa3, "email@alterado.com");
 
-// Menu.listarMenu()
+  // Menu.listarMenu()
 
-// Menu.deletarMenu(pessoa1)
+  // Menu.deletarMenu(pessoa1)
 
-// Menu.listarMenu();
+  // Menu.listarMenu();
 
 Menu.buscarPeloNome("Marcelo");
