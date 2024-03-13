@@ -144,4 +144,4 @@ const pessoa5 = new Pessoa("João", 35, "joao@gmail.com");
 
 // Menu.listarMenu();
 
-Menu.buscarPeloNome("Sérgio");
+Menu.buscarPeloNome("Marcelo");
