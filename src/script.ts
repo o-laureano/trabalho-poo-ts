@@ -62,12 +62,31 @@ class BancoDeDados {
     );
   }
 
-  static 
+  static deletar(pessoa: Pessoa): void {
+    const indicePessoa = BancoDeDados.listaDePessoas.indexOf(pessoa);
+    if (indicePessoa >= 0) {
+      BancoDeDados.listaDePessoas.splice(indicePessoa, 1);
+      console.log(`${pessoa.nome} removida com sucesso!`);
+    } else {
+      console.log(`Erro: ${pessoa.nome} não encontrada`);
+    }
+  }
+
+  static buscarPeloNome(nomeBuscado: string): void {
+    const pessoaEncontrada = BancoDeDados.listaDePessoas.find(
+      (pessoa : Pessoa) => pessoa.nome === nomeBuscado
+    );
+
+    if (pessoaEncontrada) {
+      console.log(`Pessoa encontrada. Dados: ${pessoaEncontrada.imprimirDados}`)
+    } else {
+      console.log(`Pessoa ${pessoaEncontrada} não encontrada`)
+    }
+  }
 }
 
 class Menu {
-  constructor() {
-  }
+  constructor() {}
 
   static adicionarMenu(pessoa: Pessoa): void {
     BancoDeDados.adicionarAoBanco(pessoa);
@@ -88,38 +107,41 @@ class Menu {
     console.log(`Email da pessoa alterado para: ${pessoa.email}`);
   }
 
-  static listarMenu() {
+  static listarMenu(): void {
     BancoDeDados.listar();
   }
 
-  static deletarMenu() {
-
+  static deletarMenu(pessoa: Pessoa): void {
+    BancoDeDados.deletar(pessoa);
   }
 
-  static buscarPeloNome() {
-
+  static buscarPeloNome(nomeProcurado: string) : void {
+    BancoDeDados.buscarPeloNome(nomeProcurado);
   }
-
 }
 
-const pessoa1 = new Pessoa("Raimundo", 55, "raimundo@gmail.com");
+const pessoa1 = new Pessoa("Sérgio", 29, "sergio@gmail.com");
 const pessoa2 = new Pessoa("Lucas", 24, "lucas@gmail.com");
 const pessoa3 = new Pessoa("Bianca", 18, "bianca@gmail.com");
 const pessoa4 = new Pessoa("Júlia", 13, "julia@gmail.com");
 const pessoa5 = new Pessoa("João", 35, "joao@gmail.com");
 
-console.log(pessoa1.nome); // Uso do GET
+// console.log(pessoa1.nome);
 
-Menu.adicionarMenu(pessoa1);
-Menu.adicionarMenu(pessoa2);
-Menu.adicionarMenu(pessoa3);
-Menu.adicionarMenu(pessoa4);
-Menu.adicionarMenu(pessoa5);
+// Menu.adicionarMenu(pessoa1);
+// Menu.adicionarMenu(pessoa2);
+// Menu.adicionarMenu(pessoa3);
+// Menu.adicionarMenu(pessoa4);
+// Menu.adicionarMenu(pessoa5);
 
-Menu.alterarNome(pessoa1, "Marcelo");
-Menu.alterarIdade(pessoa2, 100);
-Menu.alterarEmail(pessoa3, "email@alterado.com");
+// Menu.alterarNome(pessoa1, "Marcelo");
+// Menu.alterarIdade(pessoa2, 100);
+// Menu.alterarEmail(pessoa3, "email@alterado.com");
 
-// BancoDeDados.listar();
+// Menu.listarMenu()
 
-Menu.listarMenu()
+// Menu.deletarMenu(pessoa1)
+
+// Menu.listarMenu();
+
+Menu.buscarPeloNome("Sérgio");
