@@ -13,7 +13,7 @@ class Pessoa {
   private validarNome(nome: string): void {
     if (/\d/.test(nome)) {
       throw new Error(
-        `Erro: O nome ${nome} contem caracteres numéricos, substitua o número por letra!`
+        `Erro: O nome ${nome} contém caracteres numéricos. Substitua o número por letra!`
       );
     }
   }
@@ -51,8 +51,13 @@ class BancoDeDados {
   private static listaDePessoas: Array<Pessoa> = [];
 
   static adicionarAoBanco(pessoa: Pessoa): void {
-    this.listaDePessoas.push(pessoa);
-    console.log(`Pessoa ${pessoa.nome} adicionada com sucesso.`);
+    const pessoaExistente = this.listaDePessoas.find(p => p.nome === pessoa.nome);
+    if (pessoaExistente) {
+      console.log("Essa pessoa já foi cadastrada no banco");
+    } else {
+      this.listaDePessoas.push(pessoa);
+      console.log(`Pessoa ${pessoa.nome} adicionada com sucesso.`);
+    }
   }
 
   static listar(): void {
@@ -72,21 +77,23 @@ class BancoDeDados {
     }
   }
 
+  private static encontrarPessoaPeloNome(nomeBuscado: string): Pessoa | undefined {
+    return this.listaDePessoas.find((pessoa: Pessoa) => pessoa.nome === nomeBuscado);
+  }
+
   static buscarPeloNome(nomeBuscado: string): void {
-    const pessoaEncontrada = BancoDeDados.listaDePessoas.find(
-      (pessoa : Pessoa) => pessoa.nome === nomeBuscado
-    );
+    const pessoaEncontrada = this.encontrarPessoaPeloNome(nomeBuscado);
 
     if (pessoaEncontrada) {
-      console.log(`Pessoa encontrada. Dados: ${pessoaEncontrada.imprimirDados}`)
+      console.log(`Pessoa encontrada. Dados: ${pessoaEncontrada.imprimirDados()}`);
     } else {
-      console.log(`Pessoa ${pessoaEncontrada} não encontrada`)
+      console.log(`Pessoa ${nomeBuscado} não encontrada`);
     }
   }
 }
 
 class Menu {
-  constructor() {}
+  constructor() { }
 
   static adicionarMenu(pessoa: Pessoa): void {
     BancoDeDados.adicionarAoBanco(pessoa);
@@ -99,7 +106,7 @@ class Menu {
 
   static alterarIdade(pessoa: Pessoa, novaIdade: number): void {
     pessoa.idade = novaIdade;
-    console.log(`Idade da pessoa alterado para: ${pessoa.idade}`);
+    console.log(`Idade da pessoa alterada para: ${pessoa.idade}`);
   }
 
   static alterarEmail(pessoa: Pessoa, novoEmail: string): void {
@@ -115,7 +122,7 @@ class Menu {
     BancoDeDados.deletar(pessoa);
   }
 
-  static buscarPeloNome(nomeProcurado: string) : void {
+  static buscarPeloNome(nomeProcurado: string): void {
     BancoDeDados.buscarPeloNome(nomeProcurado);
   }
 }
@@ -126,22 +133,23 @@ const pessoa3 = new Pessoa("Bianca", 18, "bianca@gmail.com");
 const pessoa4 = new Pessoa("Júlia", 13, "julia@gmail.com");
 const pessoa5 = new Pessoa("João", 35, "joao@gmail.com");
 
-  // console.log(pessoa1.nome);
+Menu.adicionarMenu(pessoa1);
+Menu.adicionarMenu(pessoa2);
+Menu.adicionarMenu(pessoa3);
 
-  // Menu.adicionarMenu(pessoa1);
-  // Menu.adicionarMenu(pessoa2);
-  // Menu.adicionarMenu(pessoa3);
-  // Menu.adicionarMenu(pessoa4);
-  // Menu.adicionarMenu(pessoa5);
+Menu.listarMenu();
 
-  // Menu.alterarNome(pessoa1, "Marcelo");
-  // Menu.alterarIdade(pessoa2, 100);
-  // Menu.alterarEmail(pessoa3, "email@alterado.com");
+Menu.alterarNome(pessoa1, "Marcelo");
+Menu.alterarIdade(pessoa2, 100);
+Menu.alterarEmail(pessoa3, "email@alterado.com");
 
-  // Menu.listarMenu()
+Menu.listarMenu();
 
-  // Menu.deletarMenu(pessoa1)
+Menu.deletarMenu(pessoa1);
 
-  // Menu.listarMenu();
+Menu.listarMenu();
 
 Menu.buscarPeloNome("Marcelo");
+Menu.buscarPeloNome("Matheus");
+
+
