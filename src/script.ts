@@ -136,6 +136,8 @@ const pessoa5 = new Pessoa("João", 35, "joao@gmail.com");
 Menu.adicionarMenu(pessoa1);
 Menu.adicionarMenu(pessoa2);
 Menu.adicionarMenu(pessoa3);
+Menu.adicionarMenu(pessoa4);
+Menu.adicionarMenu(pessoa5); // aqui vai adicionar todas as pessoas no banco
 
 Menu.listarMenu();
 
@@ -150,6 +152,4 @@ Menu.deletarMenu(pessoa1);
 Menu.listarMenu();
 
 Menu.buscarPeloNome("Marcelo");
-Menu.buscarPeloNome("Matheus");
-
-
+Menu.buscarPeloNome("João");
