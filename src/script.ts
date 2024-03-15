@@ -77,17 +77,13 @@ class BancoDeDados {
     }
   }
 
-  private static encontrarPessoaPeloNome(nomeBuscado: string): Pessoa | undefined {
-    return this.listaDePessoas.find((pessoa: Pessoa) => pessoa.nome === nomeBuscado);
-  }
-
-  static buscarPeloNome(nomeBuscado: string): void {
-    const pessoaEncontrada = this.encontrarPessoaPeloNome(nomeBuscado);
+  static buscarPeloNome(nomeProcurado: string): void {
+    const pessoaEncontrada = BancoDeDados.listaDePessoas.find(p => p.nome === nomeProcurado);
 
     if (pessoaEncontrada) {
       console.log(`Pessoa encontrada. Dados: ${pessoaEncontrada.imprimirDados()}`);
     } else {
-      console.log(`Pessoa ${nomeBuscado} não encontrada`);
+      console.log(`Pessoa ${nomeProcurado} não encontrada`);
     }
   }
 }
@@ -127,29 +123,41 @@ class Menu {
   }
 }
 
+console.log("---------------- Criando as instâncias ----------------")
 const pessoa1 = new Pessoa("Sérgio", 29, "sergio@gmail.com");
 const pessoa2 = new Pessoa("Lucas", 24, "lucas@gmail.com");
 const pessoa3 = new Pessoa("Bianca", 18, "bianca@gmail.com");
 const pessoa4 = new Pessoa("Júlia", 13, "julia@gmail.com");
 const pessoa5 = new Pessoa("João", 35, "joao@gmail.com");
 
+console.log("\n---------------- Métodos de Edição ----------------")
 Menu.adicionarMenu(pessoa1);
 Menu.adicionarMenu(pessoa2);
 Menu.adicionarMenu(pessoa3);
 Menu.adicionarMenu(pessoa4);
-Menu.adicionarMenu(pessoa5); // aqui vai adicionar todas as pessoas no banco
+Menu.adicionarMenu(pessoa5);
 
+console.log("\n---------------- Listagem de pessoas ----------------")
 Menu.listarMenu();
 
+console.log("\n---------------- Métodos de Atualização ----------------")
+console.log("\n------ Alterar Nome ------")
 Menu.alterarNome(pessoa1, "Marcelo");
-Menu.alterarIdade(pessoa2, 100);
-Menu.alterarEmail(pessoa3, "email@alterado.com");
 
+console.log("\n------ Alterar Idade ------")
+Menu.alterarIdade(pessoa2, 100);
+
+console.log("\n------ Alterar Email ------")
+Menu.alterarEmail(pessoa3, "email@alterado.com");
+console.log("\n------ Visualizando alterações ------")
 Menu.listarMenu();
 
+console.log("\n------ Método Deletar ------")
 Menu.deletarMenu(pessoa1);
 
+console.log("\n------ Visualizando alterações ------")
 Menu.listarMenu();
 
+console.log("\n---------------- Métodos de Busca ----------------")
 Menu.buscarPeloNome("Marcelo");
 Menu.buscarPeloNome("João");
